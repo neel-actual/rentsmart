@@ -101,7 +101,6 @@
                         <v-btn
                             color="primary lighten-2"
                             text
-                            @click="book"
                         >
                             Book Now
                         </v-btn>
@@ -160,7 +159,6 @@
                         <v-btn
                             color="primary lighten-2"
                             text
-                            @click="book"
                         >
                             Book Now
                         </v-btn>
@@ -219,7 +217,6 @@
                         <v-btn
                             color="primary lighten-2"
                             text
-                            @click="book"
                         >
                             Book Now
                         </v-btn>
