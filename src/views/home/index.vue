@@ -1,7 +1,7 @@
 <template>
     <v-container class="pa-0">
         <v-row no-gutters>
-            <v-carousel hide-delimiters continuous cycle>
+            <v-carousel hide-delimiters continuous cycle height="400">
                 <v-carousel-item v-for="banner in banners" :key="banner.src" :src="banner.src">
                     <v-row
                         class="fill-height"
@@ -61,51 +61,7 @@
         </v-row>
         <v-row no-gutters justify="space-around" class="pa-2 pt-4">
             <v-col cols="6" md="3" class="pa-2" v-for="item in featured" :key="`featured-${item.id}`">
-                <v-card
-                    class="pa-1"
-                >
-                    <v-img
-                        height="150"
-                        contain
-                        :src="item.image"
-                    />
-
-                    <v-card-title style="min-height: 140px">{{ item.title | truncate(50) }}</v-card-title>
-
-                    <v-card-text>
-                        <v-row
-                            align="center"
-                            class="mx-0"
-                        >
-                            <v-rating
-                                :value="4.5"
-                                color="amber"
-                                dense
-                                half-increments
-                                readonly
-                                size="14"
-                            ></v-rating>
-
-                            <div class="grey--text ml-4">
-                                4.5 (413)
-                            </div>
-                        </v-row>
-
-                        <div class="my-4 subtitle-1 primary--text">
-                            From: ${{ item.price }}
-                        </div>
-
-                        <div style="min-height: 90px">{{ item.description | truncate(100) }}</div>
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-btn
-                            color="primary lighten-2"
-                            text
-                        >
-                            Book Now
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
+                <product :item="item"/>
             </v-col>
         </v-row>
         <v-row no-gutters align="center" justify="center" class="py-5">
@@ -118,52 +74,7 @@
         </v-row>
         <v-row no-gutters justify="space-around" class="pa-2 pt-4">
             <v-col cols="6" md="3" class="pa-2" v-for="item in top_items" :key="`top_items-${item.id}`">
-                <v-card
-                    min-height="150"
-                    class="pa-1"
-                >
-                    <v-img
-                        height="150"
-                        contain
-                        :src="item.image"
-                    />
-
-                    <v-card-title style="min-height: 140px">{{ item.title | truncate(50) }}</v-card-title>
-
-                    <v-card-text>
-                        <v-row
-                            align="center"
-                            class="mx-0"
-                        >
-                            <v-rating
-                                :value="4.5"
-                                color="amber"
-                                dense
-                                half-increments
-                                readonly
-                                size="14"
-                            ></v-rating>
-
-                            <div class="grey--text ml-4">
-                                4.5 (413)
-                            </div>
-                        </v-row>
-
-                        <div class="my-4 subtitle-1 primary--text">
-                            From: ${{ item.price }}
-                        </div>
-
-                        <div style="min-height: 90px">{{ item.description | truncate(100) }}</div>
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-btn
-                            color="primary lighten-2"
-                            text
-                        >
-                            Book Now
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
+                <product :item="item"/>
             </v-col>
         </v-row>
         <v-row no-gutters align="center" justify="center" class="py-5">
@@ -176,52 +87,7 @@
         </v-row>
         <v-row no-gutters justify="space-around" class="pa-2 pt-4">
             <v-col cols="6" md="3" class="pa-2" v-for="item in new_releases" :key="`new_releases-${item.id}`">
-                <v-card
-                    min-height="150"
-                    class="pa-1"
-                >
-                    <v-img
-                        height="150"
-                        contain
-                        :src="item.image"
-                    />
-
-                    <v-card-title style="min-height: 140px">{{ item.title | truncate(50) }}</v-card-title>
-
-                    <v-card-text>
-                        <v-row
-                            align="center"
-                            class="mx-0"
-                        >
-                            <v-rating
-                                :value="4.5"
-                                color="amber"
-                                dense
-                                half-increments
-                                readonly
-                                size="14"
-                            ></v-rating>
-
-                            <div class="grey--text ml-4">
-                                4.5 (413)
-                            </div>
-                        </v-row>
-
-                        <div class="my-4 subtitle-1 primary--text">
-                            From: ${{ item.price }}
-                        </div>
-
-                        <div style="min-height: 90px">{{ item.description | truncate(100) }}</div>
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-btn
-                            color="primary lighten-2"
-                            text
-                        >
-                            Book Now
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
+                <product :item="item"/>
             </v-col>
         </v-row>
         <v-row no-gutters align="center" justify="center" class="py-5">
@@ -258,9 +124,15 @@
 
 <script>
 import {get} from "vuex-pathify";
+import Product from "@/components/product/index";
 
 export default {
     name: 'Home',
+
+    components: {
+        Product
+    },
+
     data: () => ({
         banners: [
             {
@@ -270,9 +142,10 @@ export default {
             {
                 src: require('@/assets/images/banners/2.png'),
                 title: 'Earn from Dresses You Hardly Use on Malaysia\'s Largest Rental Platform'
-            }
-        ]
+            },
+        ],
     }),
+
     computed: {
         products: get('products/all'),
 

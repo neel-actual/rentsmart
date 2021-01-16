@@ -183,7 +183,7 @@ export default {
 
     methods: {
         selectTag(category) {
-            this.search = category;
+            this.$router.push({name: 'Category', params: {catId: category}});
         }
     }
 };

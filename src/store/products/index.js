@@ -21,6 +21,12 @@ const actions = {
             commit('SET_ALL', data);
             return data;
         });
+    },
+
+    loadProduct(ignore, productId) {
+        return fetch(`${config.FAKER_API}/products/${productId}`).then(res => res.json()).then(data => {
+            return data;
+        });
     }
 }
 
